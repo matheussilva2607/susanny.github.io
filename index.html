@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Pessoa Mais Especial do Mundo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            margin: 0;
+            padding: 0;
+            color: #d81b60;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            padding: 40px 0;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .heart {
+            color: #ff4081;
+            font-size: 2em;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .message {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.6;
+        }
+        
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .photo:hover {
+            transform: scale(1.05);
+        }
+        
+        button {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            color: #888;
+        }
+        
+        /* Estilos para o quiz */
+        .quiz-container {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            text-align: left;
+            display: none;
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #ffebee;
+        }
+        
+        .quiz-result {
+            display: none;
+            font-size: 1.2em;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Estilos para a contagem regressiva */
+        .countdown {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .countdown-unit {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+        
+        .surprise {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            animation: fadeIn 2s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Para Susanny Coutinho ❤️</h1>
+            <p>O amor da minha vida <span class="heart">❤</span></p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="message">
+            <h2>Meu amor,</h2>
+            <p>Eu te amo minha vida, pensar em você sempre me tira boas memórias e risadas, amo a pessoa que sou quando estou contigo posso ser verdadeiro e espontâneo, sem medo de ser julgado (mesmo com você julgando kkkkkk), amo nossos momentos, e ainda vamos viver muitos outros momentos juntos, seu abraço é o melhor, seu cheiro é o melhor, você é incrível, eu te admiro demais você não tem noção, uma mulher incrível, vamos viver muitas datas boas ainda, vou estar sempre aqui pra você, eu gostaria que todos os dias você se enxergasse com os meus olhos, porque eu te vejo como uma pessoa perfeita, meu amor, minha companheira, minha melhor amiga e confidente, Oro para que nosso amor se fortaleça a cada dia que passa. Farei tudo o que estiver ao meu alcance para ver você sempre feliz. 
+Eu te amo gostosa ❤️</p>
+            <p style="text-align: right;">Com todo meu amor,<br>maciel kkk</p>
+        </div>
+        
+        <!-- NOSSOS MOMENTOS (FOTOS) - IMAGENS HOSPEDADAS NO IMGBB -->
+        <h2>Nossos Momentos <span class="heart">❤</span></h2>
+        <div class="photos">
+            <img src="https://i.ibb.co/k2qNjKRV/mulher-incrivel.png" alt="mulher-incrivel" border="0" />
+            <img src="https://i.ibb.co/W4Y4ndYN/amor-bom.png" alt="amor-bom" border="0" />
+        </div>
+        
+        <!-- Seção do Quiz Romântico -->
+        <div class="quiz-container">
+            <h2>Quiz do Nosso Amor</h2>
+            <p>Vamos ver o quanto você sabe sobre o nosso relacionamento?</p>
+            
+            <div class="question active" id="question1">
+                <p>1. Onde foi nosso primeiro encontro?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(1, 'a')">Escola</div>
+                    <div class="option" onclick="checkAnswer(1, 'b')">Praça</div>
+                    <div class="option" onclick="checkAnswer(1, 'c')">Rua</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question2">
+                <p>2. Para onde fomos no nosso primeiro pião juntos?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(2, 'a')">mesversario da Helena</div>
+                    <div class="option" onclick="checkAnswer(2, 'b')">Baile</div>
+                    <div class="option" onclick="checkAnswer(2, 'c')">praia</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question3">
+                <p>3. Qual é a minha lembrança favorita nossa?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(3, 'a')">eu você e a Bia brincando</div>
+                    <div class="option" onclick="checkAnswer(3, 'b')">ambas estão certa</div>
+                    <div class="option" onclick="checkAnswer(3, 'c')">meu aniversário</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question4">
+                <p>4. adivinhe meu apelido carinho para você kkkk?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(4, 'a')">monica</div>
+                    <div class="option" onclick="checkAnswer(4, 'b')">coutinho</div>
+                    <div class="option" onclick="checkAnswer(4, 'c')">susy</div>
+                </div>
+            </div>
+            
+            <div class="quiz-result" id="quizResult">
+                <h3>Resultado do Quiz</h3>
+                <p id="resultText"></p>
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        
+        <!-- Seção da Contagem Regressiva -->
+        <div class="countdown">
+            <h2>Contagem Regressiva para uma Surpresa Especial!</h2>
+            <p>Estamos a apenas...</p>
+            
+            <div class="countdown-timer">
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Dias</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+            
+            <div class="surprise" id="surprise">
+                <p>🎉 Surpresa! 🎉</p>
+                <p>Estou planejando um(a) jantar romântico especial para nós no dia 20/07/2025!</p>
+                <p>Prepare-se para uma noite inesquecível!</p>
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        
+        <!-- NOSSA MÚSICA (EMBED DO YOUTUBE) -->
+        <h2>Nossa Música</h2>
+        <p>A música que sempre me lembra você:</p>
+        <div style="overflow: hidden; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <iframe 
+                width="100%" 
+                height="200" 
+                src="https://www.youtube.com/embed/8Hm3WkmS16M" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Feito com amor por Matheus Maciel - 2025</p>
+    </footer>
+    
+    <script>
+        // Quiz Romântico
+        let currentQuestion = 1;
+        let score = 0;
+        const totalQuestions = 4;
+        
+        function checkAnswer(questionNum, answer) {
+            const correctAnswers = {
+                1: 'b', // Resposta correta da pergunta 1
+                2: 'a', // Resposta correta da pergunta 2
+                3: 'b', // Resposta correta da pergunta 3
+                4: 'c'  // Resposta correta da pergunta 4
+            };
+            
+            if (answer === correctAnswers[questionNum]) {
+                score++;
+            }
+            
+            if (questionNum < totalQuestions) {
+                document.getElementById(`question${questionNum}`).classList.remove('active');
+                document.getElementById(`question${questionNum+1}`).classList.add('active');
+                currentQuestion++;
+            } else {
+                showQuizResult();
+            }
+        }
+        
+        function showQuizResult() {
+            const quizResult = document.getElementById('quizResult');
+            const resultText = document.getElementById('resultText');
+            
+            document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+            
+            if (score === totalQuestions) {
+                resultText.innerHTML = `Parabéns, amor! Você acertou todas as ${totalQuestions} perguntas!<br>Você realmente conhece nosso amor tão bem quanto eu. ❤`;
+            } else if (score >= totalQuestions/2) {
+                resultText.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas!<br>Nosso amor é tão especial até nas pequenas coisas que esquecemos. ❤`;
+            } else {
+                resultText.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas.<br>Mas não importa, porque o que vale é o amor que sentimos, não o que lembramos. ❤`;
+            }
+            
+            quizResult.style.display = 'block';
+        }
+        
+        // Contagem Regressiva
+        const surpriseDate = new Date(2025, 6, 20, 20, 0).getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = surpriseDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('surprise').style.display = 'block';
+                document.querySelector('.countdown-timer').style.display = 'none';
+                document.querySelector('.countdown p').textContent = 'A surpresa chegou!';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Efeito de corações ao clicar (compatível com mobile)
+        document.addEventListener('touchstart', function(e) {
+            createHeart(e.touches[0].clientX, e.touches[0].clientY);
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.className !== 'option') {
+                createHeart(e.clientX, e.clientY);
+            }
+        });
+        
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.position = 'fixed';
+            heart.style.left = x + 'px';
+            heart.style.top = y + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.opacity = 1;
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            document.body.appendChild(heart);
+            
+            let pos = y;
+            const id = setInterval(frame, 10);
+            function frame() {
+                if (pos < y - 100) {
+                    clearInterval(id);
+                    heart.remove();
+                } else {
+                    pos--;
+                    heart.style.top = pos + 'px';
+                    heart.style.opacity = (y - pos) / 100;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
