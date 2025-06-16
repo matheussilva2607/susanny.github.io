@@ -6,18 +6,30 @@
     <title>Para a Pessoa Mais Especial do Mundo</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ffebee;
-            margin: 0;
-            padding: 0;
-            color: #d81b60;
-            text-align: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #d81b60;
+    text-align: center;
+    background-image: url('https://i.ibb.co/HptgvyVW/vida-bela.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que cubra toda a altura da tela */
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         
         header {
@@ -59,13 +71,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin: 30px 0;
         }
         
         .photo {
-            width: 150px;
-            height: 150px;
+            width: auto;
+            height: 180px;
             border-radius: 10px;
             object-fit: cover;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -190,6 +202,96 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
+        /* NOVOS ESTILOS PARA AS DICAS SEMANAIS */
+        .weekly-hints {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .hint-game {
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        .hint-game.active {
+            display: block;
+        }
+        
+        .hint-emoji {
+            font-size: 2.5em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+        
+        .hint-emoji:hover {
+            transform: scale(1.2);
+        }
+        
+        .hint-result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebee;
+            border-radius: 8px;
+        }
+        
+        .hint-input {
+            padding: 10px;
+            border: 2px solid #ff7eb3;
+            border-radius: 8px;
+            width: 80%;
+            margin: 10px 0;
+        }
+        
+        .hint-progress {
+            font-weight: bold;
+            color: #ff4081;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                padding: 15px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .message {
+                padding: 20px;
+            }
+            
+            .photo {
+                height: 120px;
+            }
+            
+            .countdown-unit {
+                min-width: 50px;
+                padding: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5em;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            
+            .hint-input {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -211,8 +313,79 @@ Eu te amo gostosa ❤️</p>
         <!-- NOSSOS MOMENTOS (FOTOS) - IMAGENS HOSPEDADAS NO IMGBB -->
         <h2>Nossos Momentos <span class="heart">❤</span></h2>
         <div class="photos">
-            <img src="https://i.ibb.co/k2qNjKRV/mulher-incrivel.png" alt="mulher-incrivel" border="0" />
-            <img src="https://i.ibb.co/W4Y4ndYN/amor-bom.png" alt="amor-bom" border="0" />
+            <img src="https://i.ibb.co/Zzk0WbZj/camera-amor.png" alt="camera amor" class="photo">
+            <img src="https://i.ibb.co/99P0wcwV/sono.png" alt="sono" class="photo">
+            <img src="https://i.ibb.co/bhYTD7Z/amor-infinito.jpg" alt="amor infinito" class="photo">
+            <img src="https://i.ibb.co/DPyR6mfC/tempo-de-qualidade.jpg" alt="tempo de qualidade" class="photo">
+            <img src="https://i.ibb.co/5XSvzTtg/amo-voc.jpg" alt="amo você" class="photo">
+            <img src="https://i.ibb.co/23THPcBB/heleninha.jpg" alt="heleninha" class="photo">
+            <img src="https://i.ibb.co/ymwk1Fm1/pregui-a.jpg" alt="preguiça" class="photo">
+         </div>
+        
+        <!-- NOVA SEÇÃO: DICAS SEMANAIS -->
+        <div class="weekly-hints">
+            <h2>Dicas para a Surpresa do Dia 13/07 ❤️</h2>
+            <p class="hint-progress" id="hint-progress">Semana 1 de 5</p>
+            
+            <!-- Semana 1 -->
+            <div class="hint-game active" id="hint-week1">
+                <h3>Charada Romântica</h3>
+                <p>"O que tem rodas, não é carro, e enche a barriga de amor?"</p>
+                <input type="text" class="hint-input" id="answer-week1" placeholder="Sua resposta...">
+                <button onclick="checkHintAnswer(1)">Verificar</button>
+                <div class="hint-result" id="hint-result1">
+                    <p>💡 <strong>Dica 1:</strong> "O lugar tem várias coisinhas sobre rodas... e uma delas vai te dar um docinho!" 🚐</p>
+                </div>
+            </div>
+            
+            <!-- Semana 2 -->
+            <div class="hint-game" id="hint-week2">
+                <h3>Jogo dos Emojis</h3>
+                <p>Clique no emoji que combina com nosso date:</p>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '❌')">🎬</span>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '✅')">🚐</span>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '❌')">🍽️</span>
+                <div class="hint-result" id="hint-result2">
+                    <p>✨ <strong>Dica 2:</strong> "O cheiro de hambúrguer e churros vai nos guiar... e é pertinho de casa!" 🏠🍔</p>
+                </div>
+            </div>
+            
+            <!-- Semana 3 -->
+            <div class="hint-game" id="hint-week3">
+                <h3>Quebra-Cabeça de Palavras</h3>
+                <p>Complete: "O lugar começa com __ e termina com __." (Dica: 5 letras)</p>
+                <input type="text" class="hint-input" id="answer-week3" placeholder="Ex.: K _ I">
+                <button onclick="checkHintAnswer(3)">Verificar</button>
+                <div class="hint-result" id="hint-result3">
+                    <p>🍬 <strong>Dica 3:</strong> "Tem um lugar lá que faz <strong>churros recheados</strong>... você vai amar!"</p>
+                </div>
+            </div>
+            
+            <!-- Semana 4 -->
+            <div class="hint-game" id="hint-week4">
+                <h3>Quiz do Amor</h3>
+                <p>Qual é o meu pedido favorito nessas "coisas sobre rodas"?</p>
+                <button onclick="checkFinalHint(4, '❌')">Açaí</button>
+                <button onclick="checkFinalHint(4, '✅')">Churros</button>
+                <button onclick="checkFinalHint(4, '❌')">Pizza</button>
+                <div class="hint-result" id="hint-result4">
+                    <p>🔐 <strong>Dica 4:</strong> "Prepare-se para experimentar o melhor <strong>churros da cidade</strong> comigo!"</p>
+                </div>
+            </div>
+            
+            <!-- Semana 5 -->
+            <div class="hint-game" id="hint-week5">
+                <h3>Revelação Final!</h3>
+                <p>Você desbloqueou todas as dicas!</p>
+                <button onclick="revealFinalSurprise()">Mostrar Surpresa</button>
+                <div class="hint-result" id="hint-result5">
+                    <p>🚐💕 <strong>Nosso date será:</strong> Uma noite incrível no <strong>parque de kombis de lanches e doces</strong> perto de casa!<br><br>
+                    📅 <strong>Dia:</strong> 13/07 (sábado)<br>
+                    ⏰ <strong>Hora:</strong> 19h<br>
+                    💌 <strong>Traga:</strong> Seu sorriso e vontade de comer tudo!</p>
+                    <p style="font-size: 30px;">🍔 + 🍡 = 💏</p>
+                </div>
+            </div>
         </div>
         
         <!-- Seção do Quiz Romântico -->
@@ -359,7 +532,549 @@ Eu te amo gostosa ❤️</p>
         }
         
         // Contagem Regressiva
-        const surpriseDate = new Date(2025, 6, 20, 20, 0).getTime();
+        const surpriseDate = new Date(2025, 6, 13, 20, 0).getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = surpriseDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('surprise').style.display = 'block';
+                document.querySelector('.countdow<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Pessoa Mais Especial do Mundo</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #d81b60;
+    text-align: center;
+    background-image: url('https://i.ibb.co/HptgvyVW/vida-bela.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que cubra toda a altura da tela */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            padding: 40px 0;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .heart {
+            color: #ff4081;
+            font-size: 2em;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        .message {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.6;
+        }
+        
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .photo {
+            width: auto;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .photo:hover {
+            transform: scale(1.05);
+        }
+        
+        button {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            color: #888;
+        }
+        
+        /* Estilos para o quiz */
+        .quiz-container {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            text-align: left;
+            display: none;
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #ffebee;
+        }
+        
+        .quiz-result {
+            display: none;
+            font-size: 1.2em;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Estilos para a contagem regressiva */
+        .countdown {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .countdown-unit {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 70px;
+        }
+        
+        .countdown-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+        
+        .surprise {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            animation: fadeIn 2s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* NOVOS ESTILOS PARA AS DICAS SEMANAIS */
+        .weekly-hints {
+            background-color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .hint-game {
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        .hint-game.active {
+            display: block;
+        }
+        
+        .hint-emoji {
+            font-size: 2.5em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+        
+        .hint-emoji:hover {
+            transform: scale(1.2);
+        }
+        
+        .hint-result {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebee;
+            border-radius: 8px;
+        }
+        
+        .hint-input {
+            padding: 10px;
+            border: 2px solid #ff7eb3;
+            border-radius: 8px;
+            width: 80%;
+            margin: 10px 0;
+        }
+        
+        .hint-progress {
+            font-weight: bold;
+            color: #ff4081;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                padding: 15px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .message {
+                padding: 20px;
+            }
+            
+            .photo {
+                height: 120px;
+            }
+            
+            .countdown-unit {
+                min-width: 50px;
+                padding: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5em;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            
+            .hint-input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Para Susanny Coutinho ❤️</h1>
+            <p>O amor da minha vida <span class="heart">❤</span></p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="message">
+            <h2>Meu amor,</h2>
+            <p>Eu te amo minha vida, pensar em você sempre me tira boas memórias e risadas, amo a pessoa que sou quando estou contigo posso ser verdadeiro e espontâneo, sem medo de ser julgado (mesmo com você julgando kkkkkk), amo nossos momentos, e ainda vamos viver muitos outros momentos juntos, seu abraço é o melhor, seu cheiro é o melhor, você é incrível, eu te admiro demais você não tem noção, uma mulher incrível, vamos viver muitas datas boas ainda, vou estar sempre aqui pra você, eu gostaria que todos os dias você se enxergasse com os meus olhos, porque eu te vejo como uma pessoa perfeita, meu amor, minha companheira, minha melhor amiga e confidente, Oro para que nosso amor se fortaleça a cada dia que passa. Farei tudo o que estiver ao meu alcance para ver você sempre feliz. 
+Eu te amo gostosa ❤️</p>
+            <p style="text-align: right;">Com todo meu amor,<br>maciel kkk</p>
+        </div>
+        
+        <!-- NOSSOS MOMENTOS (FOTOS) - IMAGENS HOSPEDADAS NO IMGBB -->
+        <h2>Nossos Momentos <span class="heart">❤</span></h2>
+        <div class="photos">
+            <img src="https://i.ibb.co/Zzk0WbZj/camera-amor.png" alt="camera amor" class="photo">
+            <img src="https://i.ibb.co/99P0wcwV/sono.png" alt="sono" class="photo">
+            <img src="https://i.ibb.co/bhYTD7Z/amor-infinito.jpg" alt="amor infinito" class="photo">
+            <img src="https://i.ibb.co/DPyR6mfC/tempo-de-qualidade.jpg" alt="tempo de qualidade" class="photo">
+            <img src="https://i.ibb.co/5XSvzTtg/amo-voc.jpg" alt="amo você" class="photo">
+            <img src="https://i.ibb.co/23THPcBB/heleninha.jpg" alt="heleninha" class="photo">
+            <img src="https://i.ibb.co/ymwk1Fm1/pregui-a.jpg" alt="preguiça" class="photo">
+         </div>
+        
+        <!-- NOVA SEÇÃO: DICAS SEMANAIS -->
+        <div class="weekly-hints">
+            <h2>Dicas para a Surpresa do Dia 13/07 ❤️</h2>
+            <p class="hint-progress" id="hint-progress">Semana 1 de 5</p>
+            
+            <!-- Semana 1 -->
+            <div class="hint-game active" id="hint-week1">
+                <h3>Charada Romântica</h3>
+                <p>"O que tem rodas, não é carro, e enche a barriga de amor?"</p>
+                <input type="text" class="hint-input" id="answer-week1" placeholder="Sua resposta...">
+                <button onclick="checkHintAnswer(1)">Verificar</button>
+                <div class="hint-result" id="hint-result1">
+                    <p>💡 <strong>Dica 1:</strong> "O lugar tem várias coisinhas sobre rodas... e uma delas vai te dar um docinho!" 🚐</p>
+                </div>
+            </div>
+            
+            <!-- Semana 2 -->
+            <div class="hint-game" id="hint-week2">
+                <h3>Jogo dos Emojis</h3>
+                <p>Clique no emoji que combina com nosso date:</p>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '❌')">🎬</span>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '✅')">🚐</span>
+                <span class="hint-emoji" onclick="checkEmojiHint(2, '❌')">🍽️</span>
+                <div class="hint-result" id="hint-result2">
+                    <p>✨ <strong>Dica 2:</strong> "O cheiro de hambúrguer e churros vai nos guiar... e é pertinho de casa!" 🏠🍔</p>
+                </div>
+            </div>
+            
+            <!-- Semana 3 -->
+            <div class="hint-game" id="hint-week3">
+                <h3>Quebra-Cabeça de Palavras</h3>
+                <p>Complete: "O lugar começa com __ e termina com __." (Dica: 5 letras)</p>
+                <input type="text" class="hint-input" id="answer-week3" placeholder="Ex.: K _ I">
+                <button onclick="checkHintAnswer(3)">Verificar</button>
+                <div class="hint-result" id="hint-result3">
+                    <p>🍬 <strong>Dica 3:</strong> "Tem um lugar lá que faz <strong>churros recheados</strong>... você vai amar!"</p>
+                </div>
+            </div>
+            
+            <!-- Semana 4 -->
+            <div class="hint-game" id="hint-week4">
+                <h3>Quiz do Amor</h3>
+                <p>Qual é o meu pedido favorito nessas "coisas sobre rodas"?</p>
+                <button onclick="checkFinalHint(4, '❌')">Açaí</button>
+                <button onclick="checkFinalHint(4, '✅')">Churros</button>
+                <button onclick="checkFinalHint(4, '❌')">Pizza</button>
+                <div class="hint-result" id="hint-result4">
+                    <p>🔐 <strong>Dica 4:</strong> "Prepare-se para experimentar o melhor <strong>churros da cidade</strong> comigo!"</p>
+                </div>
+            </div>
+            
+            <!-- Semana 5 -->
+            <div class="hint-game" id="hint-week5">
+                <h3>Revelação Final!</h3>
+                <p>Você desbloqueou todas as dicas!</p>
+                <button onclick="revealFinalSurprise()">Mostrar Surpresa</button>
+                <div class="hint-result" id="hint-result5">
+                    <p>🚐💕 <strong>Nosso date será:</strong> Uma noite incrível no <strong>parque de kombis de lanches e doces</strong> perto de casa!<br><br>
+                    📅 <strong>Dia:</strong> 13/07 (sábado)<br>
+                    ⏰ <strong>Hora:</strong> 19h<br>
+                    💌 <strong>Traga:</strong> Seu sorriso e vontade de comer tudo!</p>
+                    <p style="font-size: 30px;">🍔 + 🍡 = 💏</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção do Quiz Romântico -->
+        <div class="quiz-container">
+            <h2>Quiz do Nosso Amor</h2>
+            <p>Vamos ver o quanto você sabe sobre o nosso relacionamento?</p>
+            
+            <div class="question active" id="question1">
+                <p>1. Onde foi nosso primeiro encontro?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(1, 'a')">Escola</div>
+                    <div class="option" onclick="checkAnswer(1, 'b')">Praça</div>
+                    <div class="option" onclick="checkAnswer(1, 'c')">Rua</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question2">
+                <p>2. Para onde fomos no nosso primeiro pião juntos?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(2, 'a')">mesversario da Helena</div>
+                    <div class="option" onclick="checkAnswer(2, 'b')">Baile</div>
+                    <div class="option" onclick="checkAnswer(2, 'c')">praia</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question3">
+                <p>3. Qual é a minha lembrança favorita nossa?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(3, 'a')">eu você e a Bia brincando</div>
+                    <div class="option" onclick="checkAnswer(3, 'b')">ambas estão certa</div>
+                    <div class="option" onclick="checkAnswer(3, 'c')">meu aniversário</div>
+                </div>
+            </div>
+            
+            <div class="question" id="question4">
+                <p>4. adivinhe meu apelido carinho para você kkkk?</p>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(4, 'a')">monica</div>
+                    <div class="option" onclick="checkAnswer(4, 'b')">coutinho</div>
+                    <div class="option" onclick="checkAnswer(4, 'c')">susy</div>
+                </div>
+            </div>
+            
+            <div class="quiz-result" id="quizResult">
+                <h3>Resultado do Quiz</h3>
+                <p id="resultText"></p>
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        
+        <!-- Seção da Contagem Regressiva -->
+        <div class="countdown">
+            <h2>Contagem Regressiva para uma Surpresa Especial!</h2>
+            <p>Estamos a apenas...</p>
+            
+            <div class="countdown-timer">
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Dias</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+            
+            <div class="surprise" id="surprise">
+                <p>🎉 Surpresa! 🎉</p>
+                <p>Estou planejando um(a) jantar romântico especial para nós no dia 20/07/2025!</p>
+                <p>Prepare-se para uma noite inesquecível!</p>
+                <span class="heart">❤</span>
+            </div>
+        </div>
+        
+        <!-- NOSSA MÚSICA (EMBED DO YOUTUBE) -->
+        <h2>Nossa Música</h2>
+        <p>A música que sempre me lembra você:</p>
+        <div style="overflow: hidden; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <iframe 
+                width="100%" 
+                height="200" 
+                src="https://www.youtube.com/embed/8Hm3WkmS16M" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Feito com amor por Matheus Maciel - 2025</p>
+    </footer>
+    
+    <script>
+        // Quiz Romântico
+        let currentQuestion = 1;
+        let score = 0;
+        const totalQuestions = 4;
+        
+        function checkAnswer(questionNum, answer) {
+            const correctAnswers = {
+                1: 'b', // Resposta correta da pergunta 1
+                2: 'a', // Resposta correta da pergunta 2
+                3: 'b', // Resposta correta da pergunta 3
+                4: 'c'  // Resposta correta da pergunta 4
+            };
+            
+            if (answer === correctAnswers[questionNum]) {
+                score++;
+            }
+            
+            if (questionNum < totalQuestions) {
+                document.getElementById(`question${questionNum}`).classList.remove('active');
+                document.getElementById(`question${questionNum+1}`).classList.add('active');
+                currentQuestion++;
+            } else {
+                showQuizResult();
+            }
+        }
+        
+        function showQuizResult() {
+            const quizResult = document.getElementById('quizResult');
+            const resultText = document.getElementById('resultText');
+            
+            document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+            
+            if (score === totalQuestions) {
+                resultText.innerHTML = `Parabéns, amor! Você acertou todas as ${totalQuestions} perguntas!<br>Você realmente conhece nosso amor tão bem quanto eu. ❤`;
+            } else if (score >= totalQuestions/2) {
+                resultText.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas!<br>Nosso amor é tão especial até nas pequenas coisas que esquecemos. ❤`;
+            } else {
+                resultText.innerHTML = `Você acertou ${score} de ${totalQuestions} perguntas.<br>Mas não importa, porque o que vale é o amor que sentimos, não o que lembramos. ❤`;
+            }
+            
+            quizResult.style.display = 'block';
+        }
+        
+        // Contagem Regressiva
+        const surpriseDate = new Date(2025, 6, 13, 20, 0).getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
@@ -382,7 +1097,7 @@ Eu te amo gostosa ❤️</p>
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
-        
+
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
@@ -423,6 +1138,109 @@ Eu te amo gostosa ❤️</p>
                 }
             }
         }
+        
+        // NOVO SISTEMA DE DICAS SEMANAIS
+        const hintData = [
+            {
+                week: 1,
+                startDate: "2024-06-15",
+                question: '"O que tem rodas, não é carro, e enche a barriga de amor?"',
+                answer: ["kombi", "food truck", "lanche"],
+                hint: '"O lugar tem várias coisinhas sobre rodas... e uma delas vai te dar um docinho!" 🚐'
+            },
+            {
+                week: 2,
+                startDate: "2024-06-22",
+                question: "Clique no emoji que combina com nosso date:",
+                answer: "🚐",
+                hint: '"O cheiro de hambúrguer e churros vai nos guiar... e é pertinho de casa!" 🏠'
+            },
+            {
+                week: 3,
+                startDate: "2024-06-29",
+                question: 'Complete: "O lugar começa com __ e termina com __." (Dica: 5 letras)',
+                answer: ["kombi", "k ombi"],
+                hint: '"Tem um lugar lá que faz <strong>churros recheados</strong>... você vai amar!"'
+            },
+            {
+                week: 4,
+                startDate: "2024-07-06",
+                question: "Qual é o meu pedido favorito nessas 'coisas sobre rodas'?",
+                answer: "churros",
+                hint: '"Prepare-se para experimentar o melhor <strong>churros da cidade</strong> comigo!"'
+            },
+            {
+                week: 5,
+                startDate: "2024-07-13",
+                question: "Junte todas as pistas e descubra nosso date especial!",
+                answer: "",
+                hint: '"🚐💕 <strong>Nosso date será:</strong> Uma noite incrível no <strong>parque de kombis de lanches e doces</strong> perto de casa!<br><br>📅 <strong>Dia:</strong> 13/07 (sábado)<br>⏰ <strong>Hora:</strong> 19h<br>💌 <strong>Traga:</strong> Seu sorriso e vontade de comer tudo!"'
+            }
+        ];
+
+        // Atualiza qual dica deve ser mostrada
+        function updateWeeklyHint() {
+            const today = new Date();
+            let currentWeek = 1;
+            
+            hintData.forEach(hint => {
+                const startDate = new Date(hint.startDate);
+                const endDate = new Date(startDate);
+                endDate.setDate(endDate.getDate() + 7); // Cada dica dura 7 dias
+                
+                if (today >= startDate && today <= endDate) {
+                    currentWeek = hint.week;
+                }
+            });
+            
+            // Esconde todas as dicas
+            document.querySelectorAll('.hint-game').forEach(hint => {
+                hint.classList.remove('active');
+            });
+            
+            // Mostra apenas a dica atual
+            document.getElementById(`hint-week${currentWeek}`).classList.add('active');
+            document.getElementById('hint-progress').textContent = `Semana ${currentWeek} de ${hintData.length}`;
+        }
+
+        // Verifica respostas das dicas (Semana 1 e 3)
+        function checkHintAnswer(weekNum) {
+            const userAnswer = document.getElementById(`answer-week${weekNum}`).value.toLowerCase();
+            const correctAnswers = hintData[weekNum-1].answer;
+            
+            if (correctAnswers.includes(userAnswer)) {
+                document.getElementById(`hint-result${weekNum}`).style.display = 'block';
+            } else {
+                alert("Quase lá! Tente novamente.");
+            }
+        }
+
+        // Verifica emoji selecionado (Semana 2)
+        function checkEmojiHint(weekNum, result) {
+            if (result === '✅') {
+                document.getElementById(`hint-result${weekNum}`).style.display = 'block';
+            } else {
+                alert("Não é esse... Tente outro! 😉");
+            }
+        }
+
+        // Verifica resposta final (Semana 4)
+        function checkFinalHint(weekNum, result) {
+            if (result === '✅') {
+                document.getElementById(`hint-result${weekNum}`).style.display = 'block';
+            } else {
+                alert("Essa não é minha preferida... Tente outra!");
+            }
+        }
+
+        // Revelação final (Semana 5)
+        function revealFinalSurprise() {
+            document.getElementById('hint-result5').style.display = 'block';
+        }
+
+        // Inicializa as dicas semanais
+        updateWeeklyHint();
+        setInterval(updateWeeklyHint, 24 * 60 * 60 * 1000); // Verifica diariamente
     </script>
 </body>
 </html>
